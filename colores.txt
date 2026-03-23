@@ -1,7 +1,7 @@
 Blanco= #ffffff
 BG= #f5f5f5
 Highlights= #d8dde3
-Hover Highlights= #cfd8e2
+Hover Highlights= #c0c9d3
 Negro= #222222
 
 Azul= #3f67f6

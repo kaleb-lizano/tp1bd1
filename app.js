@@ -47,7 +47,8 @@ function limpiarFormulario() {
 
 // Mostrar mensajes
 function mostrarMensaje(contenedor, texto, tipo) {
-  contenedor.innerHTML = `<div class="mensaje ${tipo}">${texto}</div>`;
+  const claseTipo = tipo === "error" ? "mensajeError" : "mensajeExito";
+  contenedor.innerHTML = `<div class="mensaje ${claseTipo}">${texto}</div>`;
 }
 
 // Limpiar mensajes
@@ -141,16 +142,17 @@ async function cargarTabla() {
 /* Validaciones
    ========================================================= */
 
-// Validar nombre
+// Validar nombre (Expresión regular)
 function validarNombre(nombre) {
-  const regex = /^[A-Za-zÁÉÍÓÚáéíóúÑñ -]+$/;
+  const regex = /^[A-Za-zÁÉÍÓÚáéíóúÑñ]+(?:[ -][A-Za-zÁÉÍÓÚáéíóúÑñ]+)*$/;
   return regex.test(nombre);
 }
 
-// Validar salario
+// Validar salario (Expresión regular)
 function validarSalario(salario) {
-  const regex = /^\d+(\.\d{1,2})?$/;
-  return regex.test(salario) && Number(salario) > 0;
+  const valor = salario.trim();
+  const regex = /^(0|[1-9]\d*)(\.\d{1,2})?$/;
+  return regex.test(valor) && Number(valor) > 0;
 }
 
 

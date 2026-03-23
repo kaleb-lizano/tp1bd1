@@ -1,6 +1,5 @@
 /* General
    ========================================================= */
-
 * {
   box-sizing: border-box;
 }
@@ -12,10 +11,8 @@ body {
   color: #222222;
 }
 
-
 /* Layout/Contenedores
    ========================================================= */
-
 .contenedorPrincipal {
   max-width: 1000px;
   margin: 40px auto;
@@ -33,10 +30,8 @@ body {
   display: none;
 }
 
-
 /* Títulos y Encabezados
    ========================================================= */
-
 .encabezadoPrincipal {
   display: flex;
   justify-content: center;
@@ -54,20 +49,16 @@ h1, h2 {
   font-weight: bold;
 }
 
-
 /* Botón Principal
    ========================================================= */
-
 .btnInsertar {
   display: flex;
   justify-content: flex-start;
   margin-top: 20px;
 }
 
-
 /* Tabla
    ========================================================= */
-
 .contenedor-tabla {
   overflow-x: auto;
   overflow-y: auto;
@@ -116,10 +107,8 @@ tbody tr:hover {
   background: #d8dde3;
 }
 
-
 /* Form
    ========================================================= */
-
 /* Margen general */
 .agrupacion {
   margin-bottom: 18px;
@@ -147,10 +136,8 @@ label {
   width: 100%;
 }
 
-
-/* 7. Inputs
+/* Inputs
    ========================================================= */
-
 /* Contenedor base (Para el Nombre y Salario) */
 .contenedorInput {
   display: flex;
@@ -186,28 +173,18 @@ label {
   box-shadow: none;
 }
 
-
 /* Input con el ₡ */
-
 .inputColon span {
   padding: 0 8px;
   background: #ffffff;
   color: #222222;
-  font-weight: bold;
   display: flex;
   align-items: center;
   align-self: stretch;
 }
 
-/* Focus ₡ */
-.contenedorInput:focus-within .inputColon span {
-  background: #d600d2;
-}
-
-
 /* Botones
    ========================================================= */
-
 .orientacionBotones {
   display: flex;
   justify-content: space-between;
@@ -250,13 +227,11 @@ label {
 }
 
 .btnSecundario:hover {
-  background: #cfd8e2;
+  background: #c0c9d3;
 }
-
 
 /* Mensajes
    ========================================================= */
-
 .mensaje {
   padding: 12px 14px;
   border-radius: 8px;
