@@ -60,7 +60,7 @@ function limpiarMensaje(contenedor) {
 function formatearSalario(valor) {
   return "₡ " + Number(valor).toLocaleString("es-CR", {
     minimumFractionDigits: 0,
-    maximumFractionDigits: 0
+    maximumFractionDigits: 4
   });
 }
 
@@ -150,7 +150,7 @@ function validarNombre(nombre) {
 // Validar salario (Expresión regular)
 function validarSalario(salario) {
   const valor = salario.trim();
-  const regex = /^(0|[1-9]\d*)(\.\d{1,2})?$/;
+  const regex = /^(0|[1-9]\d*)(\.\d{1,4})?$/;
   return regex.test(valor) && Number(valor) > 0;
 }
 
