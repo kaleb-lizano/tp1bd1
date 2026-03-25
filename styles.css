@@ -59,7 +59,7 @@ h1, h2 {
 
 /* Tabla
    ========================================================= */
-.contenedor-tabla {
+.contenedorTabla {
   overflow-x: auto;
   overflow-y: auto;
   max-height: 450px;

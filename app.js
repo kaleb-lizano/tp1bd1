@@ -65,47 +65,46 @@ function formatearSalario(valor) {
 }
 
 
-/* "Backend"
+/* Backend
    ========================================================= */
 
+const API_URL = "http://localhost:8081/api/empleados";
+
 // Ordenar empleados
-async function obtenerEmpleadosDummy() {
-  const copia = [...empleados];
+async function obtenerEmpleados() {
+  const response = await fetch(`${API_URL}/obtenerEmpleados`);
 
-  copia.sort((a, b) =>
-    a.nombre.localeCompare(b.nombre, "es", { sensitivity: "base" })
-  );
+  if (!response.ok) {
+    throw new Error("No se pudo obtener empleados.");
+  }
 
-  return copia;
+  const data = await response.json();
+
+  return data.map((empleado) => ({
+    id: empleado.Id,
+    nombre: empleado.Nombre,
+    salario: empleado.Salario,
+  }));
 }
 
 // Insertar empleado
-async function insertarEmpleadoDummy(nuevoEmpleado) {
-
-  const yaExiste = empleados.some(
-    (emp) =>
-      emp.nombre.trim().toLowerCase() ===
-      nuevoEmpleado.nombre.trim().toLowerCase()
-  );
-
-  if (yaExiste) {
-    throw new Error("Nombre de Empleado ya existe.");
-  }
-
-  const nuevoId =
-    empleados.length > 0
-      ? Math.max(...empleados.map((e) => e.id)) + 1
-      : 1;
-
-  empleados.push({
-    id: nuevoId,
-    nombre: nuevoEmpleado.nombre.trim(),
-    salario: Number(nuevoEmpleado.salario)
+async function insertarEmpleado(nuevoEmpleado) {
+  const response = await fetch(`${API_URL}/insertarEmpleado`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(nuevoEmpleado),
   });
 
-  return { ok: true };
-}
+  const data = await response.json().catch(() => ({}));
 
+  if (!response.ok) {
+    throw new Error(data.message || "No se pudo insertar empleado.");
+  }
+
+  return data;
+}
 
 /* Mostrar datos de la tabla
    ========================================================= */
@@ -114,7 +113,7 @@ async function cargarTabla() {
   limpiarMensaje(mensajePrincipal);
   tablaEmpleados.innerHTML = "";
 
-  const lista = await obtenerEmpleadosDummy();
+  const lista = await obtenerEmpleados();
 
   if (lista.length === 0) {
     tablaEmpleados.innerHTML = `
@@ -210,7 +209,7 @@ formEmpleado.addEventListener("submit", async (event) => {
 
   // Inserción
   try {
-    await insertarEmpleadoDummy({ nombre, salario });
+    await insertarEmpleado({ nombre, salario });
 
     limpiarFormulario();
     await cargarTabla();
