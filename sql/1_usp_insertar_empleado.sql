@@ -10,7 +10,11 @@ BEGIN
 	SET NOCOUNT ON;
 
 	BEGIN TRY
-		IF (EXISTS (SELECT 1 FROM [dbo].[Empleado] AS E WHERE E.Nombre = @inNombre))
+		IF (EXISTS (
+			SELECT 1
+			FROM [dbo].[Empleado] AS E
+			WHERE (E.Nombre = @inNombre)
+		))
 		BEGIN
 			SET @outResultCode = 50001;
 			RETURN;
