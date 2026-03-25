@@ -12,5 +12,5 @@ app.use(bodyParser.json());
 app.use("/api", userRoutes.routes);
 
 app.listen(config.port, () => {
-    console.log(`Server is listening on port ${config.port}`);
+    console.log(`El servidor se encuentra activo en el puerto: ${config.port}`);
 });
